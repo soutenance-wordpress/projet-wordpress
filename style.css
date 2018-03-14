@@ -1,0 +1,336 @@
+/*
+Theme Name: Thème Projet Wordpress
+Author: Nicholas, Samy, Joris
+Description: Thème pour le projet WordPress ESGI
+*/
+
+/* Globals */
+#wpadminbar {
+    display: none;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'OpenSans';
+    background-color: blue;
+
+}
+
+#mainContentPanel {
+    margin-top: 30px;
+}
+
+/* News ----------------------------------------------------------- */
+#news {
+    max-width: 960px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: red;
+    margin: auto;
+}
+
+#news h1 {
+    text-align: center;
+}
+
+#news svg path {
+    transition: 400ms;
+    transition-timing-function: ease-in-out;
+    fill: white;
+}
+
+#news #newsSliderRightButton, #news #newsSliderLeftButton {
+    background-color: #130d0c;
+    outline: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+    border: none;
+    transition: 400ms;
+    transition-timing-function: ease-in-out;
+
+    width: 40px;
+    height: 40px;
+    margin: auto;
+
+    outline: thin solid white;
+    display: flex;
+}
+
+#news  #newsSliderRightButton:hover, #news #newsSliderLeftButton:hover {
+    outline: 1px solid rgba(127, 255, 0, 1);
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+}
+
+#news #newsSliderRightButton:hover svg path, #news #newsSliderLeftButton:hover svg path {
+    fill: rgba(127, 255, 0, 1);
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+}
+
+
+/* Partie Hover News */
+#news .newsSlide:hover {
+    outline: 3px solid rgba(127, 255, 0, 1);
+    outline-offset: -3px;
+    cursor: pointer;
+}
+
+#news .sectionTitle {
+    background-color: purple;
+}
+
+
+#news .buttonDisable {
+    visibility: hidden;
+}
+
+#news .newsDotsButtons .active {
+    background-color: rgb(127, 255, 0);
+}
+
+#news .content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    padding-top: 30px;
+
+    background-color: bisque;
+}
+
+#news .newsDotsButtons button {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-right: 5px;
+    outline: none;
+    border: none;
+}
+
+#news .newsDotsButtons {
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#news .newsDotsButtons button:hover {
+    background-color: rgba(127, 255, 0, 1);
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+    cursor: pointer;
+}
+
+#news svg {
+    width: 25px;
+    height: 25px;
+    margin: auto;
+
+}
+
+
+#news .newsSlider {
+    width: 870px;
+    margin: auto;
+    overflow: hidden;
+
+}
+
+#news .newsSliderWrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    margin-left: -5px; /* -50% de la gouttière */
+
+}
+
+#news .newsSlide {
+    min-width: 430px;
+    width: 430px;
+    margin: 0 5px;
+    overflow: hidden;
+    background-color: orange;
+    display: flex;
+}
+
+#news .newsImage {
+
+    /* positionnement des images */
+    display: flex;
+    justify-content: center;
+    width: 230px;
+    height: 150px;
+    margin: auto;
+}
+
+#news .newsImage img {
+    margin: auto;
+}
+
+#news .newsText {
+    min-width: 200px;
+    width: 200px;
+    background-color: red;
+
+    flex-basis: 40%;
+    background-color: green;  
+    padding: 15px;
+}
+
+#news .newsText {
+    font-size: 13px;
+}
+
+#news .buttonType1 p {
+    font-size: 15px !important;
+}
+
+#news .buttonType1 {    
+
+    border-color: grey;
+    border-width: 2px;
+
+    min-width: 185px;
+    width: 185px;
+    height: 42px;
+
+    background-color: orange;
+    margin-right: 8px;
+    margin-top: 8px;
+    float: right;
+}   
+
+#news .buttonType1 p {
+    font-size: 15px;
+    font-weight: bold;
+}    
+
+#news .buttonType1:hover p{
+    color: rgb(127, 255, 0);
+    cursor: pointer;
+}
+
+#news .buttonType1:hover {
+    border-color: rgb(127, 255, 0);
+    cursor: pointer;
+}
+
+
+/* Single News ------------------------------------------------------------------------------ */
+
+/* Grand écran */
+#singleNewsContainer {
+    width: 960px;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 30px;
+
+}
+
+#singleNewsContainer .NewsImage {
+    width: 800px;
+    height: 400px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+
+}
+
+#singleNewsContainer h1 {
+    text-align: center;
+}
+
+#singleNewsContainer .NewsImage img {
+    height: 100%;
+}
+
+#singleNewsContainer .newsText {
+    background-color: antiquewhite;
+}
+
+#singleNewsContainer .newsText h2 {
+
+    line-height: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+
+    text-align: center;
+}
+
+#singleNewsContainer .newsText .theContent {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    line-height: 25px;
+}
+
+
+/* News Archive ----------------------------------------------------------------------------- */
+#listTemplateContainer {
+    width: 960px;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+#listTemplateContainer .customPostsList {
+    background-color: greenyellow;
+}
+
+#listTemplateContainer .customPostContent, #listTemplateContainer .titles {
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#listTemplateContainer h1 {
+    text-align: center;
+}
+
+#listTemplateContainer .customPostContent h3:hover {
+    color: rgb(127, 255, 0);
+}
+
+#listTemplateContainer .customPostContent:nth-child(even) {
+    background-color: red;
+}
+
+#listTemplateContainer .customPostContent:nth-child(odd) {
+    background-color: pink;
+}
+
+#listTemplateContainer a, #listTemplateContainer .titles h3 {
+    text-decoration: none;
+    flex-basis: 85%;
+}
+
+#listTemplateContainer .titles p {
+    flex-basis: 15%;
+}
+
+#listTemplateContainer p {
+    flex-basis: 15%;
+    align-self: flex-start;
+    text-align: center;
+}
