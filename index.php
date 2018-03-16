@@ -3,11 +3,11 @@
 <div id="mainContentPanel">
 
     <?php
-    //include('sections/accueil.php');
+    include('sections/home.php');
     include('sections/news.php');
+    include('sections/formules.php');
     ?>
 
 </div>
 
-<?php dynamic_sidebar(); ?>
 <?php get_footer(); ?>

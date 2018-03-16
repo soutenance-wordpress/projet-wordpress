@@ -18,21 +18,21 @@ Description: Thème pour le projet WordPress ESGI
 
 body {
     font-family: 'OpenSans';
-    background-color: blue;
-
+    background-image: url(assets/images/background.png);
+    background-repeat: repeat;
 }
 
-#mainContentPanel {
-    margin-top: 30px;
-}
+
 
 /* News ----------------------------------------------------------- */
 #news {
     max-width: 960px;
-    padding-top: 60px;
+    padding-top: 30px;
     padding-bottom: 60px;
     background-color: red;
     margin: auto;
+
+    background-color: #53301C;
 }
 
 #news h1 {
@@ -62,14 +62,14 @@ body {
 }
 
 #news  #newsSliderRightButton:hover, #news #newsSliderLeftButton:hover {
-    outline: 1px solid rgba(127, 255, 0, 1);
+    outline: 1px solid #53301C;
     transition: 200ms;
     transition-timing-function: ease-in-out;
     cursor: pointer;
 }
 
 #news #newsSliderRightButton:hover svg path, #news #newsSliderLeftButton:hover svg path {
-    fill: rgba(127, 255, 0, 1);
+    fill: #53301C;
     transition: 200ms;
     transition-timing-function: ease-in-out;
     cursor: pointer;
@@ -78,13 +78,15 @@ body {
 
 /* Partie Hover News */
 #news .newsSlide:hover {
-    outline: 3px solid rgba(127, 255, 0, 1);
+    outline: 3px solid #53301C;
     outline-offset: -3px;
     cursor: pointer;
 }
 
 #news .sectionTitle {
-    background-color: purple;
+    background-color: antiquewhite;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 
@@ -103,7 +105,7 @@ body {
 
     padding-top: 30px;
 
-    background-color: bisque;
+    background-color: burlywood;
 }
 
 #news .newsDotsButtons button {
@@ -125,7 +127,7 @@ body {
 }
 
 #news .newsDotsButtons button:hover {
-    background-color: rgba(127, 255, 0, 1);
+    background-color: #53301C;
     transition: 200ms;
     transition-timing-function: ease-in-out;
     cursor: pointer;
@@ -143,6 +145,7 @@ body {
     width: 870px;
     margin: auto;
     overflow: hidden;
+    padding-bottom: 30px;
 
 }
 
@@ -160,7 +163,7 @@ body {
     width: 430px;
     margin: 0 5px;
     overflow: hidden;
-    background-color: orange;
+    background-color: black;
     display: flex;
 }
 
@@ -170,12 +173,12 @@ body {
     display: flex;
     justify-content: center;
     width: 230px;
-    height: 150px;
     margin: auto;
 }
 
 #news .newsImage img {
     margin: auto;
+    height: 100%;
 }
 
 #news .newsText {
@@ -184,16 +187,12 @@ body {
     background-color: red;
 
     flex-basis: 40%;
-    background-color: green;  
+    background-color: wheat;  
     padding: 15px;
 }
 
 #news .newsText {
     font-size: 13px;
-}
-
-#news .buttonType1 p {
-    font-size: 15px !important;
 }
 
 #news .buttonType1 {    
@@ -205,7 +204,7 @@ body {
     width: 185px;
     height: 42px;
 
-    background-color: orange;
+    background-color: #674200;
     margin-right: 8px;
     margin-top: 8px;
     float: right;
@@ -214,6 +213,7 @@ body {
 #news .buttonType1 p {
     font-size: 15px;
     font-weight: bold;
+    color: wheat;
 }    
 
 #news .buttonType1:hover p{
@@ -260,7 +260,7 @@ body {
 }
 
 #singleNewsContainer .newsText {
-    background-color: antiquewhite;
+    background-color: wheat;
 }
 
 #singleNewsContainer .newsText h2 {
@@ -272,6 +272,8 @@ body {
     padding-left: 20px;
 
     text-align: center;
+    background-color: #58331e;
+    color: wheat;
 }
 
 #singleNewsContainer .newsText .theContent {
@@ -284,7 +286,14 @@ body {
 }
 
 
-/* News Archive ----------------------------------------------------------------------------- */
+#singleNewsContainer .sectionTitle {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: antiquewhite;
+}
+
+
+/* News Archive --------------------------------------------------------- */
 #listTemplateContainer {
     width: 960px;
     margin: auto;
@@ -293,7 +302,7 @@ body {
 }
 
 #listTemplateContainer .customPostsList {
-    background-color: greenyellow;
+    background-color: #58331e;
 }
 
 #listTemplateContainer .customPostContent, #listTemplateContainer .titles {
@@ -309,15 +318,19 @@ body {
 }
 
 #listTemplateContainer .customPostContent h3:hover {
-    color: rgb(127, 255, 0);
+    color: #53301C;
 }
 
 #listTemplateContainer .customPostContent:nth-child(even) {
-    background-color: red;
+    background-color: burlywood;
 }
 
 #listTemplateContainer .customPostContent:nth-child(odd) {
-    background-color: pink;
+    background-color: wheat;
+}
+
+#listTemplateContainer .titles {
+    color: wheat;   
 }
 
 #listTemplateContainer a, #listTemplateContainer .titles h3 {
@@ -333,4 +346,294 @@ body {
     flex-basis: 15%;
     align-self: flex-start;
     text-align: center;
+}
+
+#listTemplateContainer .sectionTitle {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: antiquewhite;
+}
+
+/* Accueil ---------------------------------------------------------------- */
+
+#accueil {
+
+}
+
+#accueil .videoSlot {
+    background-color: black;
+    margin: auto;
+    height: calc(100vh - 40px);
+}
+
+#accueil .video {
+    height: inherit;
+    margin: auto;
+    display: block;
+    width: 100%;
+}
+
+.videoSlot .container {
+    width: 50%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 25%;
+    right: 0;
+    padding-top: 20px;
+    margin-top: 40px;
+}
+
+.videoSlot #gameLogo {
+    width: 75%;
+    height: 35%;
+    margin: auto;
+    margin-top: 5%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.videoSlot h1 {
+    text-align: center;
+    margin-top: 2%;
+}
+
+#accueil h1 {
+    font-size: 30px;
+}
+
+#accueil > .content > .buttons > button {
+    width: 190px;
+    height: 42px;
+}
+
+#accueil > .content > .buttons {
+    margin-top: 20%;
+}
+
+#accueil .buttons {
+    text-align: center;    
+    margin-top: 20%;
+}
+
+#accueil button {    
+    background-color: rgba(0, 0, 0, 0.8);
+    border-color: grey;
+    border-width: thin;
+    border-width: 2px;
+
+    min-width: 185px;
+    width: 185px;
+    height: 42px;
+
+    margin-left: 3px;
+    margin-right: 3px;
+}   
+
+#accueil button p {
+    font-size: 13px !important;
+    font-weight: bold;
+}   
+
+#accueil button:hover p{
+    color: rgb(127, 255, 0);
+}
+
+#accueil button:hover {
+    border-color: rgb(127, 255, 0);
+    cursor: pointer;
+}
+
+
+
+/* ----- Barre de navigation ----- */
+.menu-navbar-container ul {
+    list-style: none;
+    background-color: darkgoldenrod;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.menu-navbar-container li {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    line-height: 40px;
+    height: 40px;
+    border: 1px solid #888;
+    flex-basis: 15%;
+}
+
+.menu-navbar-container a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: .3s background-color;
+}
+
+.menu-navbar-container a:hover {
+    background-color: #005f5f;
+}
+
+.menu-navbar-container a.active {
+    background-color: #fff;
+    color: #444;
+    cursor: default;
+}
+
+
+/* ------ FORMULES ----- */
+
+#formules {
+    width: 960px;
+    margin: auto;
+    padding-top: 30px;
+}
+
+#formules .content{
+    width: 100%;
+    margin: auto;
+}
+
+#formules .content ul li{
+    list-style: none;
+    margin: 1% 2%;
+    display: block;
+    margin-top: 10px;
+}
+
+#formules .content ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    background-color: burlywood;
+}
+
+#formules .content .img-formules-home{
+    width: 17em;
+}
+
+#formules .sectionTitle {
+    background-color: antiquewhite;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+
+/* ------ FORMULES SINGLE----- */
+.single-content{
+    padding: 3%;
+}
+
+.retail-single{
+    background-color: white;
+    display: inline-block;
+    width: auto;
+    margin: 3em 24em;
+    border-radius: 0% 0% 1% 1%;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;}
+
+.retail-single article{
+    width: 40em;
+    padding: 3%;
+    text-align: justify;
+
+}
+
+.retail-single .img-formules-single{
+    width: 100%;
+    border-radius: 1% 1% 0% 0%;
+}
+
+
+/* ------ LA LISTE DES FORMULES ------ */
+
+.list-formule{
+    display: inline-block;
+    width: 68%;
+    height: auto;
+    margin: 4em 15em;
+}
+
+.list-formule ul {
+    display: inline-block;
+}
+
+
+.list-formule ul li{
+    display: inline-block;
+    list-style: none;
+}
+
+
+.list-formule ul li a img.img-item-formule{
+    width: 15em;
+    padding: 3%;
+}
+
+/* ------ FORMULES SINGLE----- */
+.single-content{
+    padding: 3%;
+}
+
+
+.retail-single{
+    background-color: white;
+    display: inline-block;
+    width: auto;
+    margin: 3em 24em;
+    border-radius: 0% 0% 1% 1%;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;}
+
+.retail-single article{
+    width: 40em;
+    padding: 3%;
+    text-align: justify;
+}
+
+.retail-single .img-formules-single{
+    width: 100%;
+    border-radius: 1% 1% 0% 0%;
+}
+
+
+/*
+************************************************
+********** STYLE BY NICOLAS **********
+************************************************
+*/
+#bread {
+    display: flex;
+    background-color: green; /*#FFF8DC;*/
+    width: 960px;
+    margin: auto;
+    height: 20em;
+}
+#bread .titlePage {
+    text-align: center;
+    border: 2px solid blue;
+}
+#bread .picture{
+    flex-basis: 50%;
+    background-color: yellow;
+}
+#bread .content{
+    flex-basis: 50%;
+
+    background-color: red;
+}
+ul{
+    list-style-type: none;
+}
+
+#bread .picture{
+    background-image: url("burger.png");
 }

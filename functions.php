@@ -1,4 +1,19 @@
 <?php
+
+
+// Retirer la barre d'action Admin du FrontOffice
+function remove_admin_login_header() {
+    remove_action('wp_head', '_admin_bar_bump_cb');
+}
+add_action('get_header', 'remove_admin_login_header');
+
+
+// Augmenter la taille d'upload vidéo :
+@ini_set( 'upload_max_size' , '10M' );
+@ini_set( 'post_max_size', '10M');
+@ini_set( 'max_execution_time', '300' );
+
+
 //  Css and Javascript load --------------------------------------------
 function startwordpress_scripts() {
     wp_enqueue_style( 'css', get_template_directory_uri() . '/style.css' );
@@ -13,14 +28,14 @@ add_theme_support( 'title-tag' );
 add_theme_support( 'post-thumbnails' );
 
 
-//Création zones de menus
+// Création zones de menus
 add_action('init', 'theme_menus');
 function theme_menus() {
     register_nav_menu('main_menu', 'Menu Principal');
     register_nav_menu('footer_menu', 'Menu du pied de page');
 }
 
-//Création des zones de widgets
+// Création des zones de widgets
 add_action('widgets_init', 'theme_widgets_zones');
 function theme_widgets_zones() {
     register_sidebar();
@@ -31,62 +46,6 @@ function theme_widgets_zones() {
     ));
 }
 
-// Déclare le widget
-class CustomWidget extends WP_Widget {
-
-    public function __construct() {
-
-        parent::__construct(false, "Widget Custom Link");
-        $options = array(
-            'classname' => 'custom-link-widget',
-            'description' => 'Mon Widget Perso :) !'
-        );
-        $this->WP_Widget('custom-link-widget', 'Widget Custom Link', $options);
-
-    }
-
-    // Méthode d'affichage en front
-    public function widget($args, $d) {
-        echo "Proc";
-        echo '<a href="'.$d['url'].'">' .$d['name'].'</a>';
-    }
-
-    public function form($d) {
-
-        $default = array(
-            'name' => 'Google',
-            'url' => 'http://google.com'
-        );
-        $d = wp_parse_args($d, $default);
-        
-        echo '
-        <p>
-            <label for="'.$this->get_field_name('name').'"> Texte du lien <label/>
-            <input id="'.$this->get_field_id('name').'" name="'.$this->get_field_id('name').'" value="'.$d['name'].'" type="text" style="margin-left: 5px;" />
-        </p> 
-        
-        <p>
-            <label for="'.$this->get_field_name('url').'"> URL du lien <label/>
-            <input id="'.$this->get_field_id('url').'" name="'.$this->get_field_id('url').'" value="'.$d['url'].'" type="text" style="margin-left: 5px;" />
-        </p> 
-        '; 
-
-    }
-
-    public function update($new, $old) {
-        return $new;
-    }
-    
-} add_action( 'widgets_init', function(){
-    register_widget( 'CustomWidget' );
-});
-
-
-//Créer un shortcode [hello]
-add_shortcode('hello', 'hello_function');
-function hello_function() {
-    return "<label> Hello </label>";
-}
 
 // Création d'un nouveau type de contenu
 function register_post_type_function() {
@@ -117,7 +76,66 @@ function register_post_type_function() {
             'has_archive' => true
         )
     );
+
+    register_post_type(
+        'Formules',
+        array(
+            'label' => 'Formules',
+            'labels' => array(
+                'name' => 'Formules',
+                'singular_name' => 'Formules',
+                'all_items' => 'Tous les formules',
+                'add_new_item' => 'Ajouter une formule',
+                'edit_item' => "Éditer la formule",
+                'new_item' => 'Nouvelle formule',
+                'view_item' => "Voir la formule",
+                'search_items' => 'Rechercher parmi les formules',
+                'not_found' => "Pas de formules trouvées",
+                'not_found_in_trash'=> "Pas de formule dans la corbeille"
+            ),
+            'menu_position' => 26,
+            'public' => true,
+            'capability_type' => 'post',
+            'supports' => array(
+                'title',
+                'editor',
+                'thumbnail',
+            ),
+            'has_archive' => true,
+            'taxonomies' => array('type de formules'),
+        )
+    );
+
+    register_post_type(
+        'breads',
+        array(
+            'label' => 'Nos pains',
+            'labels' => array(
+                'name' => 'Pains',
+                'singular_name' => 'pain',
+                'all_items' => 'Tous les pains',
+                'add_newitem' => 'Ajouter un pain',
+                'edit_item' => 'Editer un pain',
+                'new_item' => 'Nouveau pain',
+                'view_item' => 'Voir le pain',
+                'search_items' => 'Rechercher parmi les pains',
+                'not_found' => 'Pas de pain trouvé',
+                'not_found_in_trash' => 'Pas de pain trouvvé dans la corbeille'
+            ),
+            'menu_position' => 27,
+            'public' => true,
+            'capability_type' => 'post',
+            'supports' => array(
+                'title',
+                'editor',
+                'thumbnail',
+            ),
+            'has_archive' => true
+        )
+    );
+
 } add_action('init', 'register_post_type_function');
+
 
 
 // News - Metabox Résumé ------------------------------------------------
@@ -136,13 +154,38 @@ function display_newsSummary($post) {
 
 }
 
-
 function save_newsSummary( $post_id ) {
     if(isset($_POST['summary'])) {
         update_post_meta($post_id, 'summary', $_POST['summary']);
     }
 }
 add_action( 'save_post', 'save_newsSummary' );
+
+
+// Metabox prix pour type pain
+function init_formulePrice() {
+    add_meta_box( 'formulePrice', __( 'Prix de la formule', 'textdomain' ), 'display_formulePrice', 'formules');
+} add_action( 'add_meta_boxes', 'init_formulePrice' );
+
+function display_formulePrice($post) {
+
+    $dataRecup = get_post_meta($post->ID,'price',true);
+?>
+<input style="width:10%;" id="price" name="price"/><?php echo $dataRecup ?>€
+<br><label style="cursor: default;">Prix de la formule :</label>
+<?php
+
+}
+
+function save_formulePrice( $post_id ) {
+    if(isset($_POST['price'])) {
+        update_post_meta($post_id, 'price', $_POST['price']);
+    }
+}
+add_action( 'save_post', 'save_formulePrice' );
+
+
+
 
 
 
@@ -217,7 +260,7 @@ function mytheme_customize_register($wp_customize) {
     if($newsSliderLimitNumberDefaultValue == 0) {
         $newsSliderLimitNumberDefaultValue = $numberOfNews;
     }
-    
+
     $wp_customize->add_control( 'newsSliderLimitNumber', array(
         'type' => 'text',
         'section' => 'newsSection',
@@ -225,6 +268,121 @@ function mytheme_customize_register($wp_customize) {
         'description' => __( 'Nombre de news actuelle(s) : '.$newsSliderLimitNumberDefaultValue.'.' ),
         'input_attrs' => ['size' => 2, 'maxlength' => strlen($numberOfNews), 'style' => 'width:auto'],
     ) );
-    
+
+
+    // SECTION HOME -------------------------------------------------
+    $wp_customize->add_section( 'homeSection' , array(
+        'title'      => __( 'Section Home', 'Ad4Games' ),
+        'priority'   => 1,
+    ) );
+
+    $wp_customize->add_setting( 'gameLogo' );
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'gameLogo', array(
+        'label'    => __( 'Logo du jeu', 'themeslug' ),
+        'description' => 'Image affichée par dessus la vidéo de la homepage. Une image à fond transparent est donc conseillée.',
+        'section'  => 'homeSection',
+        'settings' => 'gameLogo',
+    ) ) );
+
+
+    // Gestion de la vidéo
+    $wp_customize->add_setting( 'homePageVideo', array(
+        'default' => '',
+        'transport' => 'refresh',
+        'sanitize_callback' => 'absint',
+        'type' => 'theme_mod',
+    ) );
+
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'homePageVideo', array(
+        'label' => __( 'Vidéo en arrière plan' ),
+        'description' => esc_html__( 'La vidéo sera jouée en boucle et la bande-son sera désactivée.' ),
+        'section' => 'homeSection',
+        'mime_type' => 'video',  // Required. Can be image, audio, video, application, text
+        'button_labels' => array( // Optional
+            'select' => __( 'Choisir une vidéo' ),
+            'change' => __( 'Changer de vidéo' ),
+            'default' => __( 'Default' ),
+            'remove' => __( 'Retirer' ),
+            'placeholder' => __( 'Aucune vidéo séléctionnée' ),
+            'frame_title' => __( 'Choisir une vidéo' ),
+            'frame_button' => __( 'Choisir une vidéo' ),
+
+        ) ) ) );
 } add_action( 'customize_register', 'mytheme_customize_register' );
+
+
+// Catégorie / Taxonomy pour les Formules
+register_taxonomy(
+    'Type de formule',
+    'formules',
+    array(
+        'label' => 'Type de formule',
+        'labels' => array(
+            'name' => 'Type de formule',
+            'singular_name' => 'Type de formule',
+            'all_items' => 'Touts les Types de formule',
+            'edit_item' => 'Éditer le Type de formule',
+            'view_item' => 'Voir le Type de formule',
+            'update_item' => 'Mettre à jour le Type de formule',
+            'add_new_item' => 'Ajouter le Type de formule',
+            'new_item_name' => 'Nouveau Type de formule',
+            'search_items' => 'Rechercher parmi les Types de formule',
+            'popular_items' => 'Types de formule les plus utilisées'
+        ),
+        'hierarchical' => true
+    )
+);
+register_taxonomy_for_object_type( 'Type de formule', 'formules' );
+
+// Customiser les champs taxonomy
+add_filter('manage_edit-Plateformes_columns', function ( $columns ) {
+    if( isset( $columns['description'] ) )
+        unset( $columns['description'] );   
+
+    if( isset( $columns['slug'] ) )
+        unset( $columns['slug'] );     
+?>
+
+<style>
+    .term-desription-wrap{
+        display:none;
+    }
+    .term-slug-wrap{
+        display:none;
+    }
+    .term-parent-wrap{
+        display:none;
+    }
+</style><?php
+
+    return $columns;
+} );
+
+// On limite le nombre de type de formules possible pour une formule à 1.
+function allowOnlyOneTaxonomyPerPost( $args ) {
+
+    if ( ! empty( $args['taxonomy'] ) && $args['taxonomy'] === 'Type de formule' ) {
+        if ( empty( $args['walker'] ) || is_a( $args['walker'], 'Walker' ) ) { 
+            if ( ! class_exists( 'WPSE_139269_Walker_Category_Radio_Checklist' ) ) {
+
+                class WPSE_139269_Walker_Category_Radio_Checklist extends Walker_Category_Checklist {
+                    function walk( $elements, $max_depth, $args = array() ) {
+                        $output = parent::walk( $elements, $max_depth, $args );
+                        $output = str_replace(
+                            array( 'type="checkbox"', "type='checkbox'" ),
+                            array( 'type="radio"', "type='radio'" ),
+                            $output
+                        );
+                        return $output;
+                    }
+                }
+            }
+
+            $args['walker'] = new WPSE_139269_Walker_Category_Radio_Checklist;
+        }
+    }
+
+    return $args;
+} add_filter( 'wp_terms_checklist_args', 'allowOnlyOneTaxonomyPerPost' );
 ?>

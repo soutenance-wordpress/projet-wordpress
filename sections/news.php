@@ -49,7 +49,7 @@ if( (ctype_digit(get_theme_mod('newsSliderLimitNumber')) == '1') && (get_theme_m
                     </div>
 
                     <div class="newsText">
-                        <p><?php echo get_post_meta($post->ID,'summary',true); ?></p>
+                        <p><?php echo get_post_meta($post->ID,'summary', true); ?></p>
                     </div>
 
                 </div>
